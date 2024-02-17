@@ -1,0 +1,76 @@
+class Train:
+    def __init__(self, train_id, name, source_station, destination_station, departure_time, arrival_time, capacity, available_seats, fare_per_km):
+        self.train_id = train_id
+        self.name = name
+        self.source_station = source_station
+        self.destination_station = destination_station
+        self.departure_time = departure_time
+        self.arrival_time = arrival_time
+        self.capacity = capacity
+        self.available_seats = available_seats
+        self.fare_per_km = fare_per_km
+
+    def get_train_id(self):
+        return self.train_id
+
+    def get_name(self):
+        return self.name
+
+    def get_source_station(self):
+        return self.source_station
+
+    def get_destination_station(self):
+        return self.destination_station
+
+    def get_departure_time(self):
+        return self.departure_time
+
+    def get_arrival_time(self):
+        return self.arrival_time
+
+    def get_capacity(self):
+        return self.capacity
+
+    def get_available_seats(self):
+        return self.available_seats
+
+    def get_fare_per_km(self):
+        return self.fare_per_km
+
+    def set_name(self, name):
+        self.name = name
+
+    def set_source_station(self, source_station):
+        self.source_station = source_station
+
+    def set_destination_station(self, destination_station):
+        self.destination_station = destination_station
+
+    def set_departure_time(self, departure_time):
+        self.departure_time = departure_time
+
+    def set_arrival_time(self, arrival_time):
+        self.arrival_time = arrival_time
+
+    def set_capacity(self, capacity):
+        self.capacity = capacity
+
+    def set_available_seats(self, available_seats):
+        self.available_seats = available_seats
+
+    def set_fare_per_km(self, fare_per_km):
+        self.fare_per_km = fare_per_km
+
+    def book_ticket(self):
+        if self.available_seats > 0:
+            self.available_seats -= 1
+            return True
+        else:
+            return False
+
+    def cancel_ticket(self):
+        if self.available_seats < self.capacity:
+            self.available_seats += 1
+            return True
+        else:
+            return False

@@ -1,0 +1,38 @@
+import json
+from Station import Station
+
+class Station_Controller:
+    def __init__(self):
+        self.station_list = []
+        self.station_file = "station.json"
+    
+    def add_station(self, station_id, name, code, address):
+        for station in self.station_list:
+            if station.name == name:
+                return False
+        self.station_list.append(Station(station_id, name, code, address))
+        with open(self.station_file, "w") as f:
+            json.dump([u.__dict__ for u in self.station_list], f)
+        return True
+    
+    def get_station_details(self, station_id):
+        self.load_station()
+        for station in self.station_list:
+            if station.station_id == station_id:
+                return station
+        return None
+    
+    def load_station(self):
+        try:
+            with open(self.station_file, "r") as f:
+                stations = json.load(f)
+                self.station_list = [Station(**s) for s in stations]
+        except FileNotFoundError:
+            pass
+
+st = Station_Controller()
+
+st.add_station("1","Downtown","001","123 Downtown Blvd")
+st.add_station("2", "Katy", "002", "123 Katy Blvd")
+st.add_station("3", "Sugar Land", "003", "123 Sugar Land Blvd")
+st.add_station("4", "THe Woodlands", "004", "123 Woodlands Blvd")
